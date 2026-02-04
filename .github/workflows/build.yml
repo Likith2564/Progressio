@@ -18,15 +18,20 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Setup Gradle Wrapper
         run: |
           mkdir -p gradle/wrapper
-          # Download wrapper jar from Gradle distribution (included in -all zip)
           curl -sL -o gradle.zip "https://services.gradle.org/distributions/gradle-8.2-all.zip"
-          unzip -q -j gradle.zip "gradle-8.2/gradle/wrapper/gradle-wrapper.jar" -d gradle/wrapper/ || \
-          unzip -q -j gradle.zip "gradle-8.2/lib/gradle-wrapper-8.2.jar" -d gradle/wrapper/ && mv gradle/wrapper/gradle-wrapper-8.2.jar gradle/wrapper/gradle-wrapper.jar
-          unzip -q -j gradle.zip "gradle-8.2/bin/gradlew" -d . && chmod +x gradlew
-          rm -f gradle.zip
+          unzip -q -o gradle.zip "gradle-8.2/bin/gradlew" -d . && chmod +x gradlew
+          (unzip -q -o -j gradle.zip "gradle-8.2/gradle/wrapper/gradle-wrapper.jar" -d gradle/wrapper/) || \
+          (unzip -q -o -j gradle.zip "gradle-8.2/lib/gradle-wrapper-8.2.jar" -d gradle/wrapper/ && mv gradle/wrapper/gradle-wrapper-8.2.jar gradle/wrapper/gradle-wrapper.jar)
+          rm -rf gradle.zip gradle-8.2
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            curl -sL -o gradle/wrapper/gradle-wrapper.jar "https://repo.maven.apache.org/maven2/org/gradle/gradle-wrapper/8.2/gradle-wrapper-8.2.jar"
+          fi
           ls -la gradle/wrapper/
 
       - name: Build Release APK
