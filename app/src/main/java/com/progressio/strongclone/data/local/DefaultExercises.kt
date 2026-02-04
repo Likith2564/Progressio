@@ -1,0 +1,46 @@
+package com.progressio.strongclone.data.local
+
+import com.progressio.strongclone.data.local.entity.Exercise
+
+object DefaultExercises {
+    val list = listOf(
+        Exercise(name = "Bench Press", muscleGroup = "Chest", equipmentType = "Barbell"),
+        Exercise(name = "Incline Dumbbell Press", muscleGroup = "Chest", equipmentType = "Dumbbell"),
+        Exercise(name = "Cable Fly", muscleGroup = "Chest", equipmentType = "Cable"),
+        Exercise(name = "Push-Up", muscleGroup = "Chest", equipmentType = "Bodyweight"),
+        Exercise(name = "Dips", muscleGroup = "Chest", equipmentType = "Bodyweight"),
+        Exercise(name = "Overhead Press", muscleGroup = "Shoulders", equipmentType = "Barbell"),
+        Exercise(name = "Dumbbell Shoulder Press", muscleGroup = "Shoulders", equipmentType = "Dumbbell"),
+        Exercise(name = "Lateral Raise", muscleGroup = "Shoulders", equipmentType = "Dumbbell"),
+        Exercise(name = "Front Raise", muscleGroup = "Shoulders", equipmentType = "Dumbbell"),
+        Exercise(name = "Face Pull", muscleGroup = "Shoulders", equipmentType = "Cable"),
+        Exercise(name = "Barbell Row", muscleGroup = "Back", equipmentType = "Barbell"),
+        Exercise(name = "Pull-Up", muscleGroup = "Back", equipmentType = "Bodyweight"),
+        Exercise(name = "Lat Pulldown", muscleGroup = "Back", equipmentType = "Cable"),
+        Exercise(name = "Seated Cable Row", muscleGroup = "Back", equipmentType = "Cable"),
+        Exercise(name = "T-Bar Row", muscleGroup = "Back", equipmentType = "Barbell"),
+        Exercise(name = "Deadlift", muscleGroup = "Back", equipmentType = "Barbell"),
+        Exercise(name = "Romanian Deadlift", muscleGroup = "Back", equipmentType = "Barbell"),
+        Exercise(name = "Barbell Curl", muscleGroup = "Biceps", equipmentType = "Barbell"),
+        Exercise(name = "Hammer Curl", muscleGroup = "Biceps", equipmentType = "Dumbbell"),
+        Exercise(name = "Preacher Curl", muscleGroup = "Biceps", equipmentType = "Barbell"),
+        Exercise(name = "Triceps Pushdown", muscleGroup = "Triceps", equipmentType = "Cable"),
+        Exercise(name = "Skull Crusher", muscleGroup = "Triceps", equipmentType = "Barbell"),
+        Exercise(name = "Overhead Tricep Extension", muscleGroup = "Triceps", equipmentType = "Dumbbell"),
+        Exercise(name = "Close Grip Bench Press", muscleGroup = "Triceps", equipmentType = "Barbell"),
+        Exercise(name = "Squat", muscleGroup = "Quadriceps", equipmentType = "Barbell"),
+        Exercise(name = "Leg Press", muscleGroup = "Quadriceps", equipmentType = "Machine"),
+        Exercise(name = "Leg Extension", muscleGroup = "Quadriceps", equipmentType = "Machine"),
+        Exercise(name = "Lunge", muscleGroup = "Quadriceps", equipmentType = "Barbell"),
+        Exercise(name = "Romanian Deadlift", muscleGroup = "Hamstrings", equipmentType = "Barbell"),
+        Exercise(name = "Leg Curl", muscleGroup = "Hamstrings", equipmentType = "Machine"),
+        Exercise(name = "Stiff Leg Deadlift", muscleGroup = "Hamstrings", equipmentType = "Barbell"),
+        Exercise(name = "Calf Raise", muscleGroup = "Calves", equipmentType = "Machine"),
+        Exercise(name = "Seated Calf Raise", muscleGroup = "Calves", equipmentType = "Machine"),
+        Exercise(name = "Crunch", muscleGroup = "Abs", equipmentType = "Bodyweight"),
+        Exercise(name = "Plank", muscleGroup = "Abs", equipmentType = "Bodyweight"),
+        Exercise(name = "Leg Raise", muscleGroup = "Abs", equipmentType = "Bodyweight"),
+        Exercise(name = "Cable Crunch", muscleGroup = "Abs", equipmentType = "Cable"),
+        Exercise(name = "Russian Twist", muscleGroup = "Abs", equipmentType = "Bodyweight"),
+    )
+}

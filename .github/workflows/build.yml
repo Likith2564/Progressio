@@ -1,0 +1,48 @@
+name: Build APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Gradle Wrapper
+        run: |
+          mkdir -p gradle/wrapper
+          # Download wrapper jar from Gradle distribution (included in -all zip)
+          curl -sL -o gradle.zip "https://services.gradle.org/distributions/gradle-8.2-all.zip"
+          unzip -q -j gradle.zip "gradle-8.2/gradle/wrapper/gradle-wrapper.jar" -d gradle/wrapper/ || \
+          unzip -q -j gradle.zip "gradle-8.2/lib/gradle-wrapper-8.2.jar" -d gradle/wrapper/ && mv gradle/wrapper/gradle-wrapper-8.2.jar gradle/wrapper/gradle-wrapper.jar
+          unzip -q -j gradle.zip "gradle-8.2/bin/gradlew" -d . && chmod +x gradlew
+          rm -f gradle.zip
+          ls -la gradle/wrapper/
+
+      - name: Build Release APK
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
+
+      - name: Create Release (on tag)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: app/build/outputs/apk/release/app-release-unsigned.apk
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
