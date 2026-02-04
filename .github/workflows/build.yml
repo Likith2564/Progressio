@@ -21,10 +21,12 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Setup Gradle Wrapper
+      - name: Ensure Gradle wrapper jar exists
         run: |
-          mkdir -p gradle/wrapper
-          curl -sL -o gradle/wrapper/gradle-wrapper.jar "https://services.gradle.org/distributions/gradle-8.2-wrapper.jar"
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            mkdir -p gradle/wrapper
+            curl -sL -o gradle/wrapper/gradle-wrapper.jar "https://services.gradle.org/distributions/gradle-8.4-wrapper.jar"
+          fi
           chmod +x gradlew
 
       - name: Build Release APK
